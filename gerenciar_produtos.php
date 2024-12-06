@@ -2,20 +2,20 @@
 session_start();
 include 'conexao.php';
 
-// Verifica se o usuário está logado
+
 if (!isset($_SESSION['loggedin'])) {
     header("Location: login.php");
     exit;
 }
 
-// Verifica o cargo do usuário
+
 $cargo = isset($_SESSION['cargo']) ? $_SESSION['cargo'] : null;
 
-// Variáveis e tratamento de erros
+
 $error = '';
 $nome = $descricao = $estoque = $preco = $chave = $imagem = '';
 
-// Processa o cadastro de produtos apenas para admins
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $cargo === 'admin') {
     if (isset($_POST['cadastrar'])) {
         $nome = $_POST['nome'];
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $cargo === 'admin') {
     }
 }
 
-// Atualiza o estoque diretamente (para todos os cargos)
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['atualizar_estoque'])) {
     $id = $_POST['produto_id'];
     $estoque = $_POST['estoque'];
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['atualizar_estoque'])) 
     }
 }
 
-// Consulta produtos cadastrados
+
 $sql = "SELECT * FROM produtos";
 $result = $conn->query($sql);
 ?>
@@ -79,12 +79,12 @@ $result = $conn->query($sql);
     <div class="container">
         <h1>Gerenciar Produtos</h1>
 
-        <!-- Botão de Voltar para o Dashboard -->
+        
         <div class="navigation-buttons">
             <a href="dashboard.php" class="nav-btn">Voltar ao Painel de Controle</a>
         </div>
 
-        <!-- Formulário de Cadastro (somente para admins) -->
+        
         <?php if ($cargo === 'admin'): ?>
             <div class="form-section">
                 <h2>Cadastrar Produto</h2>
@@ -101,7 +101,7 @@ $result = $conn->query($sql);
             </div>
         <?php endif; ?>
 
-        <!-- Tabela de Produtos -->
+        
         <div class="table-section">
             <h2>Produtos Cadastrados</h2>
             <table>
@@ -131,7 +131,7 @@ $result = $conn->query($sql);
                               </td>';
                         echo '<td>' . $produto['chave_ativacao'] . '</td>';
                         echo '<td>';
-                        // Exibe o botão "Deletar" apenas para administradores
+                        
                         if ($cargo === 'admin') {
                             echo '<a class="delete-btn" href="deletar_produto.php?id=' . $produto['id'] . '" onclick="return confirm(\'Tem certeza que deseja deletar este produto?\')">Deletar</a>';
                         }
