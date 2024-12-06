@@ -1,4 +1,3 @@
-/* Estilos para o painel */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -14,7 +13,7 @@ body {
 }
 
 .header {
-    background-color: #6A0DAD; /* Cor roxa */
+    background-color: #6A0DAD; 
     color: white;
     padding: 30px 20px;
     text-align: center;
@@ -49,7 +48,7 @@ body {
     background-color: #D84343;
 }
 
-/* Conteúdo principal */
+
 .main-content {
     display: flex;
     flex-direction: column;
@@ -60,7 +59,7 @@ body {
     flex-grow: 1;
 }
 
-/* Botões de Ação */
+
 .button-container {
     display: flex;
     flex-direction: column;
@@ -76,7 +75,7 @@ body {
     text-decoration: none;
     border-radius: 5px;
     font-size: 1.2em;
-    width: 250px; /* Tamanho fixo e simétrico */
+    width: 250px; 
     text-align: center;
     display: inline-block;
     box-sizing: border-box;
