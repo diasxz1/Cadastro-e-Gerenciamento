@@ -85,14 +85,14 @@ img {
     background: #C9302C;
 }
 
-/* Estilo para o botão de navegação */
+
 .navigation-buttons {
     margin-bottom: 20px;
     text-align: center;
 }
 
 .nav-btn {
-    background-color: #6A0DAD; /* Roxo */
+    background-color: #6A0DAD; 
     color: #FFFFFF;
     padding: 10px 20px;
     text-decoration: none;
@@ -103,5 +103,5 @@ img {
 }
 
 .nav-btn:hover {
-    background-color: #4B0082; /* Roxo escuro */
+    background-color: #4B0082; 
 }
