@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Se o usuário já estiver logado, redireciona para o dashboard
+
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     header("Location: dashboard.php");
     exit;
@@ -13,32 +13,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    // Consulta para buscar o usuário
+    
     $stmt = $conn->prepare("SELECT * FROM usuarios WHERE usuario = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Verifica se o usuário existe
+    
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
 
-        // Depuração: exibe as senhas para comparar
-        echo "Senha cadastrada (do banco de dados): " . htmlspecialchars($user['senha']) . "<br>"; // Depuração
-        echo "Senha informada (do formulário): " . htmlspecialchars($password) . "<br>"; // Depuração
+        
+        echo "Senha cadastrada (do banco de dados): " . htmlspecialchars($user['senha']) . "<br>"; 
+        echo "Senha informada (do formulário): " . htmlspecialchars($password) . "<br>"; 
 
-        // Comparação direta da senha
+        
         if ($password === $user['senha']) {
             $_SESSION['loggedin'] = true;
             $_SESSION['cargo'] = $user['cargo'];
             header("Location: dashboard.php");
             exit;
         } else {
-            // Senha incorreta
+            
             $error = "Senha incorreta!";
         }
     } else {
-        // Usuário não encontrado
+        
         $error = "Usuário não encontrado!";
     }
 }
